@@ -15,13 +15,17 @@
 #  limitations under the License.
 #
 
-from pycompss.api.api import compss_wait_on
-from pycompss.api.api import compss_barrier
-from pycompss.api.api import compss_delete_object
-from pycompss.api.api import compss_delete_file
+from pycompss.api.api import (
+    compss_barrier,
+    compss_delete_file,
+    compss_delete_object,
+    compss_wait_on,
+)
+
 
 def init():
     pass
+
 
 def barrier():  # Wait
     compss_barrier()
@@ -39,4 +43,3 @@ def delete_object(*objs):  # Release
 
 def delete_file(file_path):
     compss_delete_file(file_path)
-

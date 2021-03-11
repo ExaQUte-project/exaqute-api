@@ -1,8 +1,13 @@
-
-from exaqute import ExaquteException
-from exaqute import init, task, get_value_from_remote, barrier, delete_object
-
 import pytest
+
+from exaqute import (
+    ExaquteException,
+    barrier,
+    delete_object,
+    get_value_from_remote,
+    init,
+    task,
+)
 
 
 @task()

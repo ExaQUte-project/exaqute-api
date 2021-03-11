@@ -1,3 +1,2 @@
-
-from .functions import *  # noqa
 from .decorators import *  # noqa
+from .functions import *  # noqa

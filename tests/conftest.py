@@ -1,5 +1,6 @@
 import os.path
 import sys
+
 import pytest
 
 TEST_DIR = os.path.dirname(__file__)
@@ -14,4 +15,3 @@ import exaqute.local as exaqute_local  # noqa
 def env_reset_init():
     yield
     exaqute_local.internals._reset()
-

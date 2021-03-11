@@ -1,9 +1,6 @@
-
-from exaqute import ExaquteException
-from exaqute import init, task
-
-
 import pytest
+
+from exaqute import ExaquteException, init, task
 
 
 def test_double_init():
@@ -15,7 +12,6 @@ def test_double_init():
 
 
 def test_no_init():
-
     @task()
     def f():
         pass
