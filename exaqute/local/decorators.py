@@ -95,7 +95,9 @@ def constraint(computing_units=1):
                     computing_units = int(os.environ[env_var])
                 except Exception:
                     raise ExaquteException(
-                        "Environment var: " + env_var + " not defined or can't be cast to int "
+                        "Environment var: "
+                        + env_var
+                        + " not defined or can't be cast to int "
                     )
     assert isinstance(computing_units, int) and computing_units > 0
     return lambda x: x
