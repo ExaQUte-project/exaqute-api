@@ -1,5 +1,4 @@
 import os
-import traceback
 from functools import wraps
 
 from exaqute.common import ExaquteException
@@ -87,16 +86,16 @@ def constraint(computing_units=1):
         try:
             # can be cast to int
             computing_units = int(computing_units)
-        except Exception as e:
+        except Exception:
             if computing_units.startswith("$"):
                 env_var = (
                     computing_units.replace("$", "").replace("{", "").replace("}", "")
                 )
                 try:
                     computing_units = int(os.environ[env_var])
-                except:
+                except Exception:
                     raise ExaquteException(
-                        "Environment var: " + env_var + " not defined"
+                        "Environment var: " + env_var + " not defined or can't be cast to int "
                     )
     assert isinstance(computing_units, int) and computing_units > 0
     return lambda x: x

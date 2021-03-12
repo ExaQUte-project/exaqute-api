@@ -45,11 +45,9 @@ class ValueWrapper:
 def _obj_to_value(obj):
     t = type(obj)
     if t is list:
-        l = [_obj_to_value(o) for o in obj]
-        return l
+        return [_obj_to_value(o) for o in obj]
     if t is ValueWrapper:
-        uw_obj = obj.unwrap_value()
-        return uw_obj
+        return obj.unwrap_value()
     else:
         if isinstance(obj, (int, bool, float, str)):
             return obj

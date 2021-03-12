@@ -21,7 +21,7 @@ import pycompss.util.context as context
 from pycompss.api.constraint import constraint
 from pycompss.api.implement import implement
 from pycompss.api.mpi import mpi as _mpi
-from pycompss.api.parameter import *
+from pycompss.api.parameter import *  # noqa
 from pycompss.api.task import task as _task
 
 
