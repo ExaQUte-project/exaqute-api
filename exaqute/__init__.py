@@ -2,17 +2,15 @@ import os
 
 from .common import *  # noqa
 
-exacute_backend = os.environ.get("EXAQUTE_BACKEND")
-print("EXAQUTE_BACKEND=", exacute_backend)
+exacute_backend = os.environ.get("EXAQUTE_BACKEND", "local")
+print("EXAQUTE_BACKEND =", exacute_backend)
 
-if exacute_backend:
-    exacute_backend = exacute_backend.lower()
+exacute_backend = exacute_backend.lower()
 
-if not exacute_backend:
-    print("ExaQUte backend: Local")
+if exacute_backend == "local":
     from .local import *  # noqa
-elif exacute_backend == "hyperloom":
-    from .hyperloom import *  # noqa
+elif exacute_backend == "quake":
+    from .quake import *  # noqa
 elif exacute_backend == "pycompss":
     from .pycompss import *  # noqa
 else:
