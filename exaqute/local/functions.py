@@ -66,18 +66,8 @@ def _delete_object(obj):
             )
         if obj.deleted:
             raise ExaquteException(
-                "Deleting already deleted object, object created at {}".format(
-                    obj.traceback
-                )
+                "Deleting already deleted object, object created at {}".format(obj.traceback)
             )
         obj.deleted = True
-    else:
-        if not isinstance(obj, (bool, int, float, str)):
-            if not _check_accessed(obj):
-                raise ExaquteException(
-                    "delete_object called on non-task value, got {!r}".format(obj)
-                    + " type "
-                    + str(t)
-                )
-            else:
-                _delete_accessed(obj)
+    elif not isinstance(obj, (bool, int, float, str)) and _check_accessed(obj):
+        _delete_accessed(obj)
