@@ -29,18 +29,9 @@ def get_value_from_remote(obj):
             )
         return obj.unwrap_value()
     else:
-        if isinstance(obj, (int, bool, float, str)):
-            return obj
-        else:
-            if not _check_accessed(obj):
-                print(
-                    "WARN: get_value_from_remote called on non-task value, got {!r}".format(
-                        obj
-                    )
-                )
-            else:
-                _delete_accessed(obj)
-            return obj
+        if not isinstance(obj, (int, bool, float, str)) and _check_accessed(obj):
+            _delete_accessed(obj)
+        return obj
 
 
 def barrier():
