@@ -14,9 +14,14 @@ exaqute_backend = exaqute_backend.lower()
 
 if exaqute_backend == "local":
     from .local import *  # noqa
-elif exaqute_backend in ("quake", "pycompss"):
-    raise ModuleNotFoundError(
-        "ExaQUte backend known but not found: {}".format(exaqute_backend)
-    )
+elif exaqute_backend == "hyperloom":
+    from .hyperloom import *  # noqa
+elif exaqute_backend == "pycompss":
+    from .pycompss import *  # noqa
 else:
-    raise ModuleNotFoundError("Unknown ExaQUte backend: {}".format(exaqute_backend))
+    raise ModuleNotFoundError(
+        (
+            "Unknown ExaQUte backend: {}\n"
+            "Supported values are 'local', 'hyperloom' and 'pycompss'"
+        ).format(exaqute_backend)
+    )
