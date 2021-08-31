@@ -2,18 +2,26 @@ import os
 
 from .common import *  # noqa
 
-exacute_backend = os.environ.get("EXAQUTE_BACKEND")
-print("EXAQUTE_BACKEND=", exacute_backend)
+exaqute_backend = os.environ.get("EXAQUTE_BACKEND")
 
-if exacute_backend:
-    exacute_backend = exacute_backend.lower()
+if exaqute_backend:
+    print("EXAQUTE_BACKEND={}".format(exaqute_backend))
+else:
+    exaqute_backend = "local"
+    print("Default ExaQUte backend: {}".format(exaqute_backend))
 
-if not exacute_backend:
-    print("ExaQUte backend: Local")
+exaqute_backend = exaqute_backend.lower()
+
+if exaqute_backend == "local":
     from .local import *  # noqa
-elif exacute_backend == "hyperloom":
+elif exaqute_backend == "hyperloom":
     from .hyperloom import *  # noqa
-elif exacute_backend == "pycompss":
+elif exaqute_backend == "pycompss":
     from .pycompss import *  # noqa
 else:
-    raise Exception("Unknown exaqute backend: {}".format(exacute_backend))
+    raise ModuleNotFoundError(
+        (
+            "Unknown ExaQUte backend: {}\n"
+            "Supported values are 'local', 'hyperloom' and 'pycompss'"
+        ).format(exaqute_backend)
+    )
