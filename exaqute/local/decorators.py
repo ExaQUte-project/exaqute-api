@@ -110,10 +110,15 @@ class Mpi(object):
             self.processes = kwargs["processes"]
         else:
             raise ExaquteException("Number of processes not specified")
+        self.processes_per_node = 1
+        if "processes_per_node" in kwargs:
+            self.processes_per_node = kwargs["processes_per_node"]
+        else:
+            raise ExaquteException("Number of processes_per_node not specified")
         if "runner" not in kwargs:
             raise ExaquteException("Runner must be specified")
         for k, v in kwargs.items():
-            if k not in ("processes", "runner", "flags"):
+            if k not in ("processes", "processes_per_node", "runner", "flags"):
                 if not k.endswith("_layout"):
                     raise ExaquteException("Argument '{}' is not valid".format(k))
 
