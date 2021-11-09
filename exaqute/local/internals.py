@@ -36,7 +36,7 @@ class ValueWrapper:
             raise ExaquteException("Using deleted object")
         if not self.keep and self not in _temp_objects:
             raise ExaquteException(
-                f"Using temporary object after submit point, object created at {self.traceback}",
+                f"Using temporary object after submit point, object created at:\n{self.traceback}",
             )
         return _obj_to_value(self.value)
 
